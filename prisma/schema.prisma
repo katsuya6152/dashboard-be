@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model race_results {
+  horse_id      String  @id @db.VarChar(45)
+  id            String  @db.VarChar(45)
+  rank          String? @db.VarChar(45)
+  box           String? @db.VarChar(45)
+  horse_order   String? @db.VarChar(45)
+  horse_name    String? @db.VarChar(45)
+  sex_and_age   String? @db.VarChar(45)
+  burden_weight String? @db.VarChar(45)
+  jockey        String? @db.VarChar(45)
+  time          String? @db.VarChar(45)
+  difference    String? @db.VarChar(45)
+  transit       String? @db.VarChar(45)
+  climb         String? @db.VarChar(45)
+  odds          String? @db.VarChar(45)
+  popularity    String? @db.VarChar(45)
+  horse_weight  String? @db.VarChar(45)
+  horse_trainer String? @db.VarChar(45)
+  horse_owner   String? @db.VarChar(90)
+  prize         String? @db.VarChar(45)
+  races         races   @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_2")
+
+  @@index([id], map: "FK_1")
+}
+
+model races {
+  id                String         @id @db.VarChar(45)
+  race_name         String         @db.VarChar(45)
+  race_place        String?        @db.VarChar(45)
+  number_of_entries Int?
+  race_state        String?        @db.VarChar(45)
+  date              String?        @db.VarChar(45)
+  race_results      race_results[]
+}
