@@ -1,0 +1,56 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../node_modules/@prisma-mongo/prisma/client"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("MONGO_DATABASE_URL")
+}
+
+model Test_AUC {
+    id      String @id @default(auto()) @map("_id") @db.ObjectId
+    create  String
+    score   Float
+    version Float
+}
+
+model confusion_matrix {
+    id      String  @id @default(auto()) @map("_id") @db.ObjectId
+    FN      Int
+    FP      Int
+    FPR     Float[]
+    TN      Int
+    TP      Int
+    TPR     Float[]
+    create  String
+    version Float
+}
+
+model importance {
+    id         String @id @default(auto()) @map("_id") @db.ObjectId
+    create     String
+    importance String
+    version    Float
+}
+
+model test_data {
+    id        String @id @default(auto()) @map("_id") @db.ObjectId
+    create    String
+    test_data String
+    version   Float
+}
+
+model train_data {
+    id         String @id @default(auto()) @map("_id") @db.ObjectId
+    create     String
+    train_data String
+    version    Float
+}
+
+model val_data {
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    create   String
+    val_data String
+    version  Float
+}
