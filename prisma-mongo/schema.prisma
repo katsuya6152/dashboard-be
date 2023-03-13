@@ -17,6 +17,7 @@ model Test_AUC {
 
 model confusion_matrix {
     id      String  @id @default(auto()) @map("_id") @db.ObjectId
+    AUC     Float
     FN      Int
     FP      Int
     FPR     Float[]
@@ -32,6 +33,13 @@ model importance {
     create     String
     importance String
     version    Float
+}
+
+model memo {
+    id      String @id @default(auto()) @map("_id") @db.ObjectId
+    create  String
+    memo    String
+    version Float
 }
 
 model test_data {
