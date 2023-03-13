@@ -5,8 +5,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class RawService {
   constructor(private prisma: PrismaService) {}
 
-  findAll() {
-    return this.prisma.races.findMany();
+  countAll() {
+    return this.prisma.races.count();
   }
 
   findPage(page: number) {
@@ -15,6 +15,9 @@ export class RawService {
       take: 20,
       orderBy: {
         id: 'desc',
+      },
+      include: {
+        race_results: true,
       },
     });
   }
