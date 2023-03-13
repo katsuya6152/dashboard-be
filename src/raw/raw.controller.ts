@@ -5,9 +5,9 @@ import { RawService } from './raw.service';
 export class RawController {
   constructor(private readonly rawService: RawService) {}
 
-  @Get()
-  findAll() {
-    return this.rawService.findAll();
+  @Get('count')
+  countAll() {
+    return this.rawService.countAll();
   }
 
   @Get(':page')
